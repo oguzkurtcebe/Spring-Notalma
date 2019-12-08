@@ -39,8 +39,8 @@ public class UserService {
 		userDAO.update(user);
 	}
 
-	public User getFindByUsernameAndPass(String username, String pass) {
-		return userDAO.getFindByUsernameAndPass(username, pass);
+	public User getFindByUsernameAndPass(User user) {
+		return userDAO.getFindByUsernameAndPass(user.getUsername(),user.getPass());
 
 	}
 

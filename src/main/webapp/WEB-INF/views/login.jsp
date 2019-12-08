@@ -61,12 +61,12 @@
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" id="registerBtn">
+							<button class="login100-form-btn" id="registerBtn" onclick="loginBtn()">
 								Giriş
 							</button>
 						</div>
 					</div>
-
+                             ${status}
 					<div class="text-center p-t-115">
 						<a href="register">Üye Ol</a>
 					</div>
@@ -94,6 +94,7 @@
 	<script src="asset/login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="asset/login/js/main.js"></script>
+	<script src="asset/custom/login.js"></script>
 
 </body>
 </html>

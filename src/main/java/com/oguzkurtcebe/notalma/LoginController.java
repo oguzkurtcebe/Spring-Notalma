@@ -27,6 +27,10 @@ public class LoginController {
 	public String login(@RequestParam(value="status",required=false) String status ,Model model) {
       if(status!=null) {
     	  System.out.println(status);
+    	  if(status.equals("OK"))
+    		  model.addAttribute("status","Üyeliðiniz Baþarýyla Tamamlandý ");
+    	  else
+    		  model.addAttribute("status","Hata Tekrar Deneyiniz ");
       }
 		return "login";
 	}
@@ -34,7 +38,7 @@ public class LoginController {
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(Model model) {
 
-		return "login";
+		return "register";
 	}
 
 	@RequestMapping(value = "/reg/{key}", method = RequestMethod.GET)
@@ -43,6 +47,16 @@ public class LoginController {
 			return "redirect:/login?status=ok";
 		}
 		return "redirect:/login?status=error";
+	}
+	
+	@RequestMapping(value = "/controlUser", method = RequestMethod.POST)
+	public ResponseEntity<String> controlUser(@RequestBody User user, HttpServletRequest request) {
+		User userm=userService.getFindByUsernameAndPass(user);
+		if (userm!=null) {
+			return new ResponseEntity<>("OK", HttpStatus.OK);
+		}
+
+		return new ResponseEntity<>("ERROR", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)

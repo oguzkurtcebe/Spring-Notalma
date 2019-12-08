@@ -23,21 +23,28 @@ public class UserDAO {
 	}
 
 	public User getFindByUsernameAndPass(String username,String pass) {
-		Query query = sessionFactory.getCurrentSession().createQuery("FROM Note WHERE username=:username AND pass=:pass AND active=:active")
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM User WHERE username=:username AND pass=:pass AND active=:active")
 				.setString("username", username)
 				.setString("pass", pass)
 				.setBoolean("active", true);
-		return (User) query.getSingleResult();
+		User user=null;
+		try {
+			user=(User) query.getSingleResult();
+		} catch (javax.persistence.PersistenceException e) {
+			user=null;
+		
+		}
+		return user;
 	}
 	
 	public User getFindByUsername(String username) {
-		Query query = sessionFactory.getCurrentSession().createQuery("FROM Note WHERE username=:username")
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM User WHERE username=:username")
 				.setString("username", username);								
 		return (User) query.getSingleResult();
 	}
 	
 	public User getFindByKey(String key) {
-		Query query = sessionFactory.getCurrentSession().createQuery("FROM Note WHERE value_key=:key")
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM User WHERE value_key=:key")
 				.setString("key", key);		
 		User user=null;
 		try {
