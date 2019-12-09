@@ -1,12 +1,10 @@
 package com.oguzkurtcebe.notalma;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.oguzkurtcebe.entity.Note;
+import com.oguzkurtcebe.security.LoginFilter;
 import com.oguzkurtcebe.service.MailService;
 import com.oguzkurtcebe.service.NoteService;
 
@@ -51,6 +50,7 @@ public class HomeController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Model model, HttpServletRequest req) {
 
+		model.addAttribute("user",req.getSession().getAttribute("user"));
 		System.out.println(req.getRemoteAddr());
 		model.addAttribute("serverTime", "/");
 
@@ -63,7 +63,7 @@ public class HomeController {
 	public String home(@PathVariable("id") Long id, Model model) {
 		// System.out.println(id);
 		model.addAttribute("id", id);
-        mailservice.registerMail("oguzkkk@yopmail.com", "123");
+       
 
 		return "detail";
 	}
@@ -105,7 +105,7 @@ public class HomeController {
 	@RequestMapping(value = "/getNotes", method = RequestMethod.POST)
 	public ResponseEntity<ArrayList<Note>> getNotes(HttpServletRequest request) {
 
-		System.out.println("sonuc:" + noteservice.getAll(1l).toString());
+		System.out.println("sonuc:" + noteservice.getAll(LoginFilter.user.getId()).toString());
 
 		return new ResponseEntity<>(noteservice.getAll(1l), HttpStatus.CREATED);
 	}

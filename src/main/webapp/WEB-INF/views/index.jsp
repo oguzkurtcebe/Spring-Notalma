@@ -49,10 +49,10 @@
 				<img src="asset/images/person1.jpg" alt="Free HTML5 Bootstrap Template" class="img-responsive">
 			</figure>
 			<h3 class="heading">Hakkımda</h3>
-			<h2>Oğuz Kurtcebe</h2>
-			<p>Bilgisayar Mühendisiyim. Web ve Mobil uygulama geliştirmekteyim.</p>
+			<h2>${user.name} ${user.surname}</h2>
+			<p></p>
 			<ul class="fh5co-social">
-				<li><a href="#"><i class="icon-Note">Not ekle</i></a></li>
+				<li><a href="logout">Çıkış</a></li>
 				
 			</ul>
 		</div>

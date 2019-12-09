@@ -13,7 +13,7 @@ function loginBtn(){
 		data:ser_data,
 		success:function(data){
 			 if(data=='OK'){
-				 $(location).attr('href', 'index')
+				 $(location).attr('href','/index')
 			}else if(data=='ERROR'){
 				alert("Kullanıcı adı ve şifrenizi kontrol edin");
 			}
