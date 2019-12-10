@@ -19,6 +19,7 @@ function addUser(){
 				alert("parolalar eşleşmiyor")
 			}else if(data=='OK'){
 				alert("başarıyla üye olundu");
+				
 			}else if(data=='ERROR'){
 				alert("Bir hata oluştu");
 			}

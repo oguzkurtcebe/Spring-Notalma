@@ -44,7 +44,7 @@ public class HomeController {
 	public String homes(Model model, HttpServletRequest req) {
 
 		
-		return "redirect:/index";
+		return "redirect:/login";
 	}
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)

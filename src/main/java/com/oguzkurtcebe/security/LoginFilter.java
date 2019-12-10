@@ -32,6 +32,22 @@ public class LoginFilter implements Filter {
 		HttpServletRequest req=(HttpServletRequest) request;
 		HttpServletResponse res=(HttpServletResponse) response;
 		
+		if(req.getRequestURI().contains("")) {
+			chain.doFilter(request, response);
+			return;	
+		}
+		
+		if(req.getRequestURI().contains("/")) {
+			chain.doFilter(request, response);
+			return;	
+		}
+		
+		
+		if(req.getRequestURI().contains("rest")) {
+			chain.doFilter(request, response);
+			return;	
+		}
+		
 		if(req.getRequestURI().contains("login")) {
 			chain.doFilter(request, response);
 			return;	
